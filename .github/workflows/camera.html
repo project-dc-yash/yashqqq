@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Accident Alert & Location System</title>
+  <style>
+    body {
+      background-color: #1e1f26;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      padding: 20px;
+      font-size: 28px;
+    }
+
+    .alert-box {
+      background-color: #e74c3c;
+      margin: 30px auto;
+      padding: 30px;
+      border-radius: 20px;
+      width: 350px;
+      position: relative;
+      font-weight: bold;
+      font-size: 18px;
+      display: none;
+    }
+
+    .wheels {
+      position: absolute;
+      bottom: -20px;
+      left: 30px;
+      width: 30px;
+      height: 30px;
+      background-color: black;
+      border-radius: 50%;
+    }
+
+    .wheels.right {
+      left: auto;
+      right: 30px;
+    }
+
+    .location {
+      margin: 10px auto;
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 10px;
+      border-radius: 10px;
+      width: 300px;
+      font-size: 16px;
+      display: none;
+    }
+
+    .confirmation,
+    .email-status {
+      background-color: #2ecc71;
+      color: white;
+      margin: 20px auto;
+      padding: 15px;
+      border-radius: 10px;
+      width: 350px;
+      font-weight: bold;
+      font-size: 16px;
+      display: none;
+    }
+
+    #whatsappBtn {
+      display: none;
+      background-color: #25D366;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-weight: bold;
+      text-decoration: none;
+      margin: 20px auto;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>🚗 Accident Alert & Location System</h1>
+
+  <div class="alert-box" id="alertBox">
+    Accident Alert and Location<br>Tracking System
+    <div class="wheels"></div>
+    <div class="wheels right"></div>
+  </div>
+
+  <div class="location" id="locationBox">
+    Latitude: 18.4414°N <br>Longitude: 73.8317°E
+  </div>
+
+  <div class="confirmation" id="msgSent">
+    📍 Location Sent to Emergency Contact!<br>
+    🚑 Emergency Medical Help is on the Way!
+  </div>
+
+  <div class="email-status" id="emailSent">
+    ✅ Email Sent to Emergency Services Successfully!
+  </div>
+
+  <a id="whatsappBtn" href="#" target="_blank">
+    📤 Send Location via WhatsApp
+  </a>
+
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      const presetLat = "18.4414°N";
+      const presetLon = "73.8317°E";
+
+      const message = `🚨 Accident Alert!
+
+📍 Preset Location:
+Latitude: ${presetLat}°
+Longitude: ${presetLon}°
+
+📌 View on Map:
+https://www.google.com/maps?q=${presetLat},${presetLon}`;
+
+      const whatsappUrl = `https://wa.me/917741900675?text=${encodeURIComponent(message)}`;
+
+      // After 3 seconds show alert and WhatsApp button
+      setTimeout(() => {
+        document.getElementById('alertBox').style.display = 'block';
+        document.getElementById('locationBox').style.display = 'block';
+        document.getElementById('msgSent').style.display = 'block';
+
+        const whatsappBtn = document.getElementById('whatsappBtn');
+        whatsappBtn.href = whatsappUrl;
+        whatsappBtn.style.display = 'inline-block';
+      }, 3000); // 3 seconds
+
+      // After 4 seconds show email confirmation
+      setTimeout(() => {
+        document.getElementById('emailSent').style.display = 'block';
+      }, 4000); // 4 seconds
+    });
+  </script>
+</body>
+</html>
